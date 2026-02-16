@@ -41,6 +41,10 @@ Next.js + TypeScript + Tailwind CSS + shadcn/ui + Zustand + TanStack Query 기�
 - `shared/lib/api-server.ts` : 서버 전용 API 유틸
 - `shared/lib/query-client.ts` : TanStack Query 기본 설정
 - `shared/lib/get-query-client.ts` : SSR용 QueryClient 생성
+- `shared/lib/supabase-env.ts` : Supabase 환경 변수 유틸
+- `shared/lib/supabase-client.ts` : Supabase 브라우저 클라이언트
+- `shared/lib/supabase-server.ts` : Supabase 서버 클라이언트
+- `shared/lib/supabase-middleware.ts` : Supabase 세션 갱신 미들웨어
 - `shared/hooks/` : 공용 훅
 - `shared/stores/` : 전역 상태(Zustand)
 - `shared/types/` : 공용 타입
@@ -67,6 +71,27 @@ Next.js + TypeScript + Tailwind CSS + shadcn/ui + Zustand + TanStack Query 기�
 - `shared/lib/api-client.ts`
 - `shared/lib/api-server.ts`
 
+## Supabase
+
+### Environment
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
+  - 전환 기간 동안 `NEXT_PUBLIC_SUPABASE_ANON_KEY`도 허용됨 (fallback)
+
+### Usage
+
+- 브라우저: `getBrowserSupabase()`
+- 서버: `getServerSupabase()`
+- 미들웨어 세션 갱신: `middleware.ts`에서 `updateSupabaseSession()` 호출
+
+관련 파일
+- `shared/lib/supabase-env.ts`
+- `shared/lib/supabase-client.ts`
+- `shared/lib/supabase-server.ts`
+- `shared/lib/supabase-middleware.ts`
+- `middleware.ts`
+
 ## Scripts
 
 - `pnpm dev` : 개발 서버
@@ -80,3 +105,6 @@ Next.js + TypeScript + Tailwind CSS + shadcn/ui + Zustand + TanStack Query 기�
 - 기본 API 베이스 URL
   - 클라이언트: `NEXT_PUBLIC_API_BASE_URL`
   - 서버: `API_BASE_URL`
+- Supabase
+  - `NEXT_PUBLIC_SUPABASE_URL`
+  - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (또는 `NEXT_PUBLIC_SUPABASE_ANON_KEY`)
